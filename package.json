@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "predeploy": "npm run build"
+    "predeploy": "npm run build",
+    "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
     "@emailjs/browser": "^3.6.2",

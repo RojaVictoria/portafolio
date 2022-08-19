@@ -1,4 +1,4 @@
-import Firebase from 'firebase'
+import Firebase from "firebase"
 
 export const projectsModule = {
     namespaced: true,

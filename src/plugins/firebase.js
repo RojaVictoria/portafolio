@@ -1,4 +1,4 @@
-import Firebase from 'firebase'
+import Firebase from "firebase"
 
 Firebase.initializeApp({
   apiKey: process.env.VUE_APP_APIKEY,
