@@ -1,6 +1,6 @@
 <template>
     <v-footer
-        color="#EF8E95"
+        color="pink"
         class="mt-15"
         app
         absolute
@@ -10,22 +10,21 @@
         no-gutters
         >
             <v-col
-                class="#EF8E95 text-center white--text pt-2"
+                class="text-center white--text py-1"
                 cols="12"
             >
-                <p class="my-1">Creado y Diseñado por Victoria Rojas</p>
-                <v-btn
-                    v-for="icon in icons"
-                    :key="icon"
+                <p class="my-1">© {{ new Date().getFullYear() }} - Diseñado y creado por Victoria Rojas
+                  <v-btn
                     target="_blank" 
-                    :href=icon.link
-                    class="mb-2 white--text"
+                    href="https://github.com/RojaVictoria/portafolio"
+                    class="white--text pb-1"
                     icon
                     >
                     <v-icon size="24px">
-                        {{ icon.icon }}
+                        mdi-github
                     </v-icon>
-                </v-btn>
+                  </v-btn>
+                </p>
             </v-col>
         </v-row>
     </v-footer>
@@ -34,16 +33,11 @@
 <script>
   export default {
     data: () => ({
-      icons: [
-        {
-          "icon": 'mdi-github',
-          "link": 'https://github.com/RojaVictoria'
-        },
-        {
-          "icon": 'mdi-linkedin',
-          "link": 'https://www.linkedin.com/in/victoriarojascabrera/'
-        },
-      ],
     }),
   }
 </script>
+<style>
+p {
+    font-size: 14px;
+}
+</style>

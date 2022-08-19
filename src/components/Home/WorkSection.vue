@@ -1,26 +1,21 @@
 <template>
     <v-container class="mt-5 mb-15">
         <div class="lines">
-            <h2 class="text-center mt-10">Mi Trabajo</h2>
-            <div v-for="n in 4" :key="n">
-                <h3 class="mt-10 mb-2">Nombre del Proyecto</h3>
+            <h2 class="text-center mt-10">Proyectos</h2>
+
+            <div v-for="project in $store.state.projects.projects" :key="project.id">
+                <h3 class="mt-10 mb-2 pink--text">{{ project.name }}</h3>
                 <v-hover>
                     <template v-slot:default="{ hover }">
                         <v-carousel
                         cycle
                         height="550"
+                        interval="4500"
                         hide-delimiters
                         :show-arrows="false"
+                        class="elevation-9"
                         >
-                            <v-carousel-item
-                            v-for="(slide, i) in slides"
-                            :key="i"
-                            >
-                                <v-sheet
-                                    :color="colors[i]"
-                                    height="100%"
-                                >
-                                </v-sheet>
+                            <v-carousel-item v-for="img in project.img" :key="img.id" :src="img" elevation="15">  
                             </v-carousel-item>
 
                             <v-fade-transition origin="center">
@@ -28,72 +23,21 @@
                                     v-if="hover"
                                     absolute
                                     color="#000000"
-                                    opacity="0.6"
+                                    opacity="0.8"
                                     z-index="1"
                                 >
                                     <div class="white--text ma-10">
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt explicabo perspiciatis natus magnam fugiat error placeat sequi odit, amet aperiam debitis, repellendus iusto dolorum? Itaque facere libero nisi voluptatum expedita!</p>
-                                        <!-- v-for chips -->
-                                        <v-chip
-                                        class="my-2 mr-2"
-                                        color="#EF8E95"
-                                        label
-                                        text-color="white"
+                                        <p>{{ project.desc }}</p>
+                                        <v-chip class="my-2 mr-2" color=pink label text-color="white"
+                                        v-for="tech in project.tech" :key="tech.id"
                                         >
-                                            <v-icon left>
-                                                mdi-vuejs
-                                            </v-icon>
-                                            Vue
-                                        </v-chip>
-                                        <v-chip
-                                        class="ma-2"
-                                        color="#EF8E95"
-                                        label
-                                        text-color="white"
-                                        >
-                                            <v-icon left>
-                                                mdi-vuetify
-                                            </v-icon>
-                                            Vuetify
-                                        </v-chip>
-                                        <v-chip
-                                        class="ma-2"
-                                        color="#EF8E95"
-                                        label
-                                        text-color="white"
-                                        >
-                                            <v-icon left>
-                                                mdi-vuejs
-                                            </v-icon>
-                                            Vuex
-                                        </v-chip>
-                                        <v-chip
-                                        class="ma-2"
-                                        color="#EF8E95"
-                                        label
-                                        text-color="white"
-                                        >
-                                            <v-icon left>
-                                                mdi-language-css3
-                                            </v-icon>
-                                            CSS3
-                                        </v-chip>
-                                        <v-chip
-                                        class="ma-2"
-                                        color="#EF8E95"
-                                        label
-                                        text-color="white"
-                                        >
-                                            <v-icon left>
-                                                mdi-language-html5
-                                            </v-icon>
-                                            HTML5
+                                            {{ tech }}
                                         </v-chip>
                                         <p>Visitar:
-                                            <v-btn icon>
+                                            <v-btn icon target="_blank" :href=project.github>
                                                 <v-icon size="24px">mdi-github</v-icon>
                                             </v-btn>
-                                            <v-btn icon>
+                                            <v-btn icon v-if="project.url !== null" target="_blank" :href=project.url>
                                                 <v-icon size="24px">mdi-open-in-new</v-icon>
                                             </v-btn>
                                         </p>
@@ -111,51 +55,37 @@
 <script>
 export default {
     name: "WorkSection",
-    data: () => ({
-        overlay: false,
-        colors: [
-          'pink',
-          'cyan',
-          'blue',
-          'teal',
-          'blue-grey',
-        ],
-        cycle: false,
-        slides: [
-          'First',
-          'Second',
-          'Third',
-          'Fourth',
-          'Fifth',
-        ],
-    }),
+    props: {
+        projects: { type: Object, required: true }
+    },
 }
 </script>
 
 <style scoped>
-p {
-    font-size: 20px;
-    font-family: 'Nunito', sans-serif;
-}
-h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 40px;
-}
-h3 {
-    font-family: 'Josefin Slab', serif;
-    font-size: 35px;
-    font-weight: 700;
-    color: #373737;
-}
 .lines {
     line-height: 2;
 }
 .slide-fade-enter-active, .slide-fade-leave-active {
     transition: 5s ease-in-out;
 } 
-/* .v-carousel.on-hover, .overlay {
-    transition: opacity .5s ease-in-out;
-    opacity: 0.6;
-} */
+h2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h2:before, h2:after {
+    content: '';
+    border-top: 4px solid;
+    margin: 0 20px 0 0;
+    flex: 1 0 20px;
+    color: #E91E63;
+}
+
+h2:after {
+    margin: 0 0 0 20px;
+}
 
 </style>

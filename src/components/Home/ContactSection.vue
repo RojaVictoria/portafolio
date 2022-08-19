@@ -1,34 +1,30 @@
 <template>
     <v-container class="my-10">
-        <v-row justify="center" class="mt-5 mb-5">
+        <v-row class="mt-5 mb-5">
             <v-col cols="12" md="6">
-                <h2 class="pb-2">Hagamos algo genial juntos</h2>
-                <p class="lines">Contáctame e iniciemos un proyecto juntos, me comunicaré contigo a la brevedad.</p>
-                <p class="lines">Algunas de mis redes:
-                    <v-btn
-                    v-for="icon in icons"
-                    :key="icon"
-                    target="_blank" 
-                    :href=icon.link
-                    class="mx-2"
-                    icon
-                    >
-                        <v-icon size="40px" color="#EF8E95">
-                            {{ icon.icon }}
-                        </v-icon>
-                    </v-btn>
-                </p>
+                <h2 class="pb-2">Contáctame</h2>
+                <p class="lines">Envíame un mensaje y me comunicaré contigo a la brevedad.</p>
+                <p class="lines">También me puedes encontrar aquí:</p>
+                <div>
+                    <v-icon size="30px" color="pink" class="pb-1 mr-2">mdi-github</v-icon>
+                    <a href="https://github.com/RojaVictoria" target="_blank">Mi Github</a><br>
+                    <v-icon size="30px" color="pink" class="pb-1 mr-2">mdi-linkedin</v-icon>
+                    <a href="https://www.linkedin.com/in/victoriarojascabrera/" target="_blank">Mi Linkedin</a><br>
+                    <v-icon size="30px" color="pink" class="pb-1 mr-2">mdi-email-outline</v-icon>
+                    <a href="mailto:${victoria.rojascabrera@gmail.com}" target="_blank">victoria.rojascabrera@gmail.com</a>
+                </div>
             </v-col>
             <v-col cols="12" md="6">
                 <v-card>
                     <v-card-text class="pa-8">
                             <v-form
                             ref="form"
-                            v-model="valid"
                             lazy-validation
+                            @submit.prevent="sendEmail"
                             >
                                 <v-text-field
                                 v-model="name"
+                                name="name"
                                 :rules="nameRules"
                                 label="Nombre"
                                 required
@@ -36,24 +32,29 @@
                                 ></v-text-field>
                                 <v-text-field
                                 v-model="email"
+                                name="email"
                                 :rules="emailRules"
                                 label="Email"
                                 required
                                 outlined
                                 ></v-text-field>
                                 <v-textarea
+                                v-model="message"
+                                name="message"
+                                :rules="rules"
+                                required
                                 outlined
                                 rows="8"
                                 row-height="20"
                                 label="Mensaje"
                                 ></v-textarea>
                                 <v-btn
+                                type="submit"
                                 block
                                 tile
                                 large
                                 class="white--text"
-                                color="#EF8E95"
-                                @click="validate"
+                                color="pink"
                                 >
                                 Enviar
                                 </v-btn>
@@ -66,32 +67,55 @@
 </template>
 
 <script>
+import emailjs from '@emailjs/browser';
 export default {
     name: "ContactSection",
     data: () => ({
-        icons: [
-            {
-                "icon": 'mdi-github',
-                "link": 'https://github.com/RojaVictoria'
-            },
-            {
-                "icon": 'mdi-linkedin',
-                "link": 'https://www.linkedin.com/in/victoriarojascabrera/'
-            },
+        name: '',
+        email: '',
+        message: '',
+        nameRules: [
+            v => !!v || 'Ingrese un nombre',
+            v => (v && v.length <= 20) || 'El nombre debe tener menos de 20 caracteres',
+        ],
+        emailRules: [
+            v => !!v || 'Ingrese un correo',
+            v => /.+@.+\..+/.test(v) || 'El correo debe ser válido',
+        ],
+        rules: [
+            v => !!v || 'Ingrese un mensaje',
         ],
     }),
+    methods: {
+        sendEmail(e) {
+            try {
+                emailjs.sendForm('service_jil1izv', 'template_pgsktes', e.target,
+                'BMm8cDdmUYeMddk7f', {
+                name: this.name,
+                email: this.email,
+                message: this.message
+                })
+                alert("Mensaje enviado, muchas gracias");
+                this.$refs.form.resetValidation()
+                this.$refs.form.reset()
+
+            } catch(error) {
+                console.log({error})
+            }
+        },
+    }
 }
+
 </script>
 
 <style scoped>
-p {
-    font-size: 18px;
+a {
+  text-decoration: none;
+  color: black;
+
 }
-h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 40px;
-}
-.lines {
-    line-height: 2;
+a:hover {
+  text-decoration: underline;
+  color: #E91E63;
 }
 </style>

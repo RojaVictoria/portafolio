@@ -1,35 +1,43 @@
 <template>
-    <v-container class="mt-5 mb-15">
-        <v-row justify="center" class="mt-10 mb-5">
+    <v-container fill-height class="mt-5 mb-15">
+        <v-row align="center" class="mt-5 mb-5">
             <v-col sm="8" md="6">
-                <v-img :contain="true" src="../../assets/About.png"></v-img>
+                <v-img :contain="true" src="../../assets/profile-pic.png"></v-img>
             </v-col>
             <v-col sm="12" md="6" class="pl-10">
                 <div class="lines">
                     <h2 class="pb-2">Sobre Mí</h2>
-                    <p>¡Hola! Mi nombre es Victoria, soy Traductora y Desarrolladora Front End. Mi interés por el desarrollo surgió por el deseo de crear cosas desde cero y mi pasión por aprender cosas nuevas.</p>
-                    <p>Como profesional, mi prioridad es entregar resultados de calidad, siempre manteniendo el estilo. Como una persona autónoma, curiosa y proactiva, estoy comprometida a seguir aprediendo y a utilizar las mejores prácticas de desarrollo.</p>
+                    <p>¡Hola! Mi nombre es Victoria, soy Traductora y desde el año 2021 comencé a aprender programación con la intención de transformar mi carrera. Mi pasión es crear cosas desde cero, cuidando los detalles y encontrando soluciones a distintos problemas.</p>
+                    <p>Mi meta es seguir aprendiendo para convertirme en una profesional del área de la informática, entregar resultados de calidad y poder llevar a cabo todas las etapas del proceso de producción de una aplicación web, siempre manteniendo el estilo.</p>
                     <p>Tecnologías que manejo actualmente:</p>
                     <v-row>
                         <v-col xs="3">
+                            <h5 class="pink--text">Front End</h5>
                             <ul>
                                 <li>HTML5</li>
                                 <li>CSS3</li>
-                                <li>JAVASCRIPT</li>
+                                <li>JavaScript</li>
+                                <li>VueJS</li>
+                                <li>Vuex</li>
                             </ul>
                         </v-col>
                         <v-col xs="3">
+                            <h5 class="pink--text">Back End</h5>
                             <ul>
-                                <li>VUE</li>
-                                <li>VUETIFY</li>
-                                <li>BOOTSTRAP</li>
+                                <li>Python</li>
+                                <li>Django</li>
+                                <li>PostgreSQL</li>
+                                <li>Firebase</li>
                             </ul>
                         </v-col>
                         <v-col xs="3">
+                            <h5 class="pink--text">Otros</h5>
                             <ul>
-                                <li>SASS/SCSS</li>
                                 <li>REST API</li>
-                                <li>GITHUB</li>
+                                <li>Git</li>
+                                <li>SASS/SCSS</li>
+                                <li>Vuetify</li>
+                                <li>Bootstrap</li>
                             </ul>
                         </v-col>
                     </v-row>
@@ -46,15 +54,12 @@ export default {
 </script>
 
 <style scoped>
-p {
-    font-family: 'Nunito', sans-serif;
-    font-size: 18px;
-}
-h2 {
-    font-family: 'Cinzel', serif;
-    font-size: 40px;
-}
 .lines {
     line-height: 2;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 </style>
