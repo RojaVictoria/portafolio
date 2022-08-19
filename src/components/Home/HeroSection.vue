@@ -13,7 +13,7 @@
                 </div>
             </v-col>
             <v-col sm="8" md="6">
-                <v-img :contain="true" src="../../assets/banner.png"></v-img>
+                <v-img :contain="true" src="../../assets/Banner.png"></v-img>
             </v-col>
         </v-row>
     </v-container>
